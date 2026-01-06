@@ -26,7 +26,7 @@ export default async function handler(req) {
 
   // Verificar variables de entorno (incluyendo tu clave: ELEVA2_STEMS_SECRET_938472)
   const n8nUrl = process.env.N8N_WEBHOOK_URL;
-  const secretKey = process.env.N8N_SECRET_KEY; // ← Debe ser "ELEVA2_STEMS_SECRET_938472"
+  const secretKey = process.env.N8N_SECRET_KEY; // ← Debe ser ELEVA2_STEMS_SECRET_938472
 
   if (!n8nUrl || !secretKey) {
     console.error('Faltan variables de entorno: N8N_WEBHOOK_URL o N8N_SECRET_KEY');
