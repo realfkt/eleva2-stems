@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Separación de Stems con IA | ELEVA2</title>
+  <meta name="description" content="Sube tu canción y obtén voces, batería, bajo y más con inteligencia artificial.">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Separación de Stems con IA</h1>
+      <p>Sube tu canción y obtén voces, batería, bajo y más en minutos.</p>
+    </div>
+
+    <div class="card">
+      <!-- Preview de audio -->
+      <div id="audioPreview" class="audio-preview hidden">
+        <div class="preview-header">
+          <span>Vista previa</span>
+          <button id="playBtn" class="play-btn">▶ Reproducir</button>
+        </div>
+        <div class="waveform" id="waveform"></div>
+        <audio id="audioElement" class="hidden"></audio>
+      </div>
+
+      <!-- Formulario -->
+      <form id="stemForm" class="form">
+        <div class="form-group">
+          <label>Archivo de audio (MP3, WAV)</label>
+          <input type="file" id="audioFile" accept="audio/*" required>
+        </div>
+        <div class="form-group">
+          <label>Tu nombre</label>
+          <input type="text" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" name="email" required>
+        </div>
+        <button type="submit" id="submitBtn" class="btn">Procesar con IA</button>
+      </form>
+    </div>
+
+    <footer>
+      © 2026 ELEVA2. Procesamiento seguro con inteligencia artificial.
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
