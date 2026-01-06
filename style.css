@@ -183,3 +183,21 @@ footer {
     padding: 1.5rem;
   }
 }
+/* Estilos para la demo */
+.stem-btn {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.stem-btn.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+}
+
+.stem-btn svg {
+  fill: currentColor;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+}

@@ -69,3 +69,56 @@ document.getElementById('stemForm').addEventListener('submit', async function(e)
     btn.textContent = originalText;
   }
 });
+// Demo interactiva
+const demoAudio = document.getElementById('demoAudio');
+const demoPlayBtn = document.getElementById('demoPlayBtn');
+const demoWaveform = document.getElementById('demoWaveform');
+const stemButtons = document.querySelectorAll('.stem-btn');
+
+let isPlaying = false;
+let currentStem = 'original'; // Por defecto, reproduce todo
+
+// Cargar audio de ejemplo
+demoAudio.src = 'https://cdn.jsdelivr.net/npm/@sample-audio/billie-jean.mp3'; // Ejemplo público
+
+// Crear waveform para demo
+function createDemoWaveform() {
+  demoWaveform.innerHTML = '';
+  for (let i = 0; i < 40; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    demoWaveform.appendChild(bar);
+  }
+}
+
+// Inicializar
+createDemoWaveform();
+
+// Control de reproducción
+demoPlayBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    demoAudio.pause();
+    demoPlayBtn.textContent = '▶ Reproducir Demo';
+  } else {
+    demoAudio.play();
+    demoPlayBtn.textContent = '⏸ Pausar Demo';
+  }
+  isPlaying = !isPlaying;
+});
+
+// Activar/desactivar stems
+stemButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const stem = btn.dataset.stem;
+    
+    // Resetear todos los botones
+    stemButtons.forEach(b => b.classList.remove('active'));
+    
+    // Activar el seleccionado
+    btn.classList.add('active');
+    
+    // Aquí iría la lógica de mute/unmute si tuvieras múltiples audios
+    // Por ahora, solo cambiamos el estado visual
+    console.log(`Activando stem: ${stem}`);
+  });
+});

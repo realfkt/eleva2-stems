@@ -25,7 +25,49 @@
         <div class="waveform" id="waveform"></div>
         <audio id="audioElement" class="hidden"></audio>
       </div>
+<!-- Demo Interactiva -->
+<div class="mt-16">
+  <h2 class="text-2xl font-bold text-primary mb-4">Prueba la IA en acción</h2>
+  <p class="text-gray-400 mb-6">Escucha cómo se separan las pistas en tiempo real.</p>
 
+  <!-- Reproductor Global -->
+  <div class="bg-gray-900 rounded-lg p-4 mb-6">
+    <div class="flex items-center justify-between mb-3">
+      <button id="demoPlayBtn" class="bg-primary hover:bg-red-700 px-4 py-2 rounded font-bold">
+        ▶ Reproducir Demo
+      </button>
+      <div class="flex items-center gap-2 text-sm text-gray-500">
+        <span>Audio de ejemplo: “Billie Jean”</span>
+      </div>
+    </div>
+    <div class="waveform" id="demoWaveform"></div>
+    <audio id="demoAudio" class="hidden"></audio>
+  </div>
+
+  <!-- Botones de Stems -->
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+    <button data-stem="original" class="stem-btn bg-gray-800 hover:bg-gray-700 p-3 rounded text-center">
+      <div class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5z"/></svg></div>
+      Original
+    </button>
+    <button data-stem="vocals" class="stem-btn bg-gray-800 hover:bg-gray-700 p-3 rounded text-center">
+      <div class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-6h-4c0-2.21-1.79-4-4-4S6 3.79 6 6h4c0 2.21 1.79 4 4 4s4-1.79 4-4zm-6 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-6h-4v-4h4v4z"/></svg></div>
+      Vocales
+    </button>
+    <button data-stem="bass" class="stem-btn bg-gray-800 hover:bg-gray-700 p-3 rounded text-center">
+      <div class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
+      Bajo
+    </button>
+    <button data-stem="drums" class="stem-btn bg-gray-800 hover:bg-gray-700 p-3 rounded text-center">
+      <div class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 16l-4-4 4-4 4 4-4 4z"/></svg></div>
+      Batería
+    </button>
+    <button data-stem="guitar" class="stem-btn bg-gray-800 hover:bg-gray-700 p-3 rounded text-center">
+      <div class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5z"/></svg></div>
+      Guitarra
+    </button>
+  </div>
+</div>
       <!-- Formulario -->
       <form id="stemForm" class="form">
         <div class="form-group">
