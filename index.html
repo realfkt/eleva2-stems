@@ -15,65 +15,80 @@
       <p>Sube tu canción y obtén voces, batería, bajo y más en minutos.</p>
     </div>
 
+    <!-- Demo Interactiva -->
+    <div class="demo-section">
+      <h2>Prueba la IA en acción</h2>
+      <p>Escucha cómo se separan las pistas en tiempo real.</p>
+
+      <!-- Reproductor Global -->
+      <div class="demo-player">
+        <div class="demo-controls">
+          <button id="demoPlayBtn" class="btn">▶ Reproducir Demo</button>
+          <span class="demo-label">Audio de ejemplo: “Billie Jean”</span>
+        </div>
+        <div class="waveform" id="demoWaveform"></div>
+        <audio id="demoAudio" class="hidden"></audio>
+      </div>
+
+      <!-- Botones de Stems -->
+      <div class="stem-grid">
+        <button data-stem="original" class="stem-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5z"/></svg>
+          Original
+        </button>
+        <button data-stem="vocals" class="stem-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-6h-4c0-2.21-1.79-4-4-4S6 3.79 6 6h4c0 2.21 1.79 4 4 4s4-1.79 4-4zm-6 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-6h-4v-4h4v4z"/></svg>
+          Vocales
+        </button>
+        <button data-stem="bass" class="stem-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+          Bajo
+        </button>
+        <button data-stem="drums" class="stem-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 16l-4-4 4-4 4 4-4 4z"/></svg>
+          Batería
+        </button>
+        <button data-stem="guitar" class="stem-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5z"/></svg>
+          Guitarra
+        </button>
+      </div>
+    </div>
+
     <div class="card">
-      <!-- Preview de audio -->
+      <!-- Preview de audio del usuario -->
       <div id="audioPreview" class="audio-preview hidden">
         <div class="preview-header">
-          <span>Vista previa</span>
+          <span>Tu canción</span>
           <button id="playBtn" class="play-btn">▶ Reproducir</button>
         </div>
         <div class="waveform" id="waveform"></div>
         <audio id="audioElement" class="hidden"></audio>
       </div>
-<!-- Demo Interactiva -->
-<div class="mt-16">
-  <h2 class="text-2xl font-bold text-primary mb-4">Prueba la IA en acción</h2>
-  <p class="text-gray-400 mb-6">Escucha cómo se separan las pistas en tiempo real.</p>
 
-  <!-- Reproductor Global -->
-  <div class="bg-gray-900 rounded-lg p-4 mb-6">
-    <div class="flex items-center justify-between mb-3">
-      <button id="demoPlayBtn" class="bg-primary hover:bg-red-700 px-4 py-2 rounded font-bold">
-        ▶ Reproducir Demo
-      </button>
-      <div class="flex items-center gap-2 text-sm text-gray-500">
-        <span>Audio de ejemplo: “Billie Jean”</span>
-      </div>
-    </div>
-    <div class="waveform" id="demoWaveform"></div>
-    <audio id="demoAudio" class="hidden"></audio>
-  </div>
-
-  <!-- Botones de Stems -->
-  <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-    <button data-stem="original" class="stem-btn bg-gray-800 hover:bg-gray-700 p-3 rounded text-center">
-      <div class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5z"/></svg></div>
-      Original
-    </button>
-    <button data-stem="vocals" class="stem-btn bg-gray-800 hover:bg-gray-700 p-3 rounded text-center">
-      <div class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-6h-4c0-2.21-1.79-4-4-4S6 3.79 6 6h4c0 2.21 1.79 4 4 4s4-1.79 4-4zm-6 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-6h-4v-4h4v4z"/></svg></div>
-      Vocales
-    </button>
-    <button data-stem="bass" class="stem-btn bg-gray-800 hover:bg-gray-700 p-3 rounded text-center">
-      <div class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
-      Bajo
-    </button>
-    <button data-stem="drums" class="stem-btn bg-gray-800 hover:bg-gray-700 p-3 rounded text-center">
-      <div class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 16l-4-4 4-4 4 4-4 4z"/></svg></div>
-      Batería
-    </button>
-    <button data-stem="guitar" class="stem-btn bg-gray-800 hover:bg-gray-700 p-3 rounded text-center">
-      <div class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5z"/></svg></div>
-      Guitarra
-    </button>
-  </div>
-</div>
       <!-- Formulario -->
       <form id="stemForm" class="form">
         <div class="form-group">
           <label>Archivo de audio (MP3, WAV)</label>
-          <input type="file" id="audioFile" accept="audio/*" required>
+          <!-- Drag & Drop Zone -->
+          <div id="dropZone" class="drop-zone">
+            <div class="drop-zone__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 15v-2h-2v2h2zM15 15v-2H9v2h6zm-8 0v-2H5v2h2zM20 6h-3V4h-2v2h-4V4H9v2H6V4H4v2H1v2h1v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8h1V6h-3zm-2 12H4V8h16v10z"/>
+              </svg>
+            </div>
+            <p class="drop-zone__text">Arrastra tu archivo de audio aquí</p>
+            <p class="drop-zone__text--small">o haz clic para explorar</p>
+            <input type="file" id="audioFile" accept="audio/*" required class="drop-zone__input">
+          </div>
+          <div id="filePreview" class="hidden mt-3 file-preview">
+            <div class="flex items-center justify-between">
+              <span id="fileName" class="text-sm truncate flex-1 mr-2"></span>
+              <button id="removeFile" class="text-xs bg-red-600 hover:bg-red-700 px-2 py-1 rounded">×</button>
+            </div>
+          </div>
         </div>
+
         <div class="form-group">
           <label>Tu nombre</label>
           <input type="text" name="nombre" required>

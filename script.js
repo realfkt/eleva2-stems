@@ -122,3 +122,82 @@ stemButtons.forEach(btn => {
     console.log(`Activando stem: ${stem}`);
   });
 });
+// Drag & Drop para subida de archivos
+const dropZone = document.getElementById('dropZone');
+const audioFileInput = document.getElementById('audioFile');
+const filePreview = document.getElementById('filePreview');
+const fileName = document.getElementById('fileName');
+const removeFile = document.getElementById('removeFile');
+
+// Eventos para drag & drop
+dropZone.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  dropZone.classList.add('dragover');
+});
+
+dropZone.addEventListener('dragleave', () => {
+  dropZone.classList.remove('dragover');
+});
+
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  
+  const files = e.dataTransfer.files;
+  if (files.length > 0) {
+    handleFile(files[0]);
+  }
+});
+
+// Click para abrir el explorador
+dropZone.addEventListener('click', () => {
+  audioFileInput.click();
+});
+
+// Cambio de archivo (manual)
+audioFileInput.addEventListener('change', (e) => {
+  if (e.target.files.length > 0) {
+    handleFile(e.target.files[0]);
+  }
+});
+
+// Manejar el archivo seleccionado
+function handleFile(file) {
+  // Validar tipo de archivo
+  if (!file.type.startsWith('audio/')) {
+    alert('Por favor, selecciona un archivo de audio (MP3, WAV).');
+    return;
+  }
+
+  // Mostrar preview
+  fileName.textContent = file.name;
+  filePreview.classList.remove('hidden');
+
+  // Actualizar el input oculto
+  const dataTransfer = new DataTransfer();
+  dataTransfer.items.add(file);
+  audioFileInput.files = dataTransfer.files;
+
+  // Aquí puedes añadir una animación de carga si quieres
+  dropZone.classList.add('loading');
+  setTimeout(() => {
+    dropZone.classList.remove('loading');
+  }, 1000);
+
+  // Si tienes waveform, actualízalo
+  if (document.getElementById('waveform')) {
+    createWaveform(document.getElementById('waveform'));
+  }
+}
+
+// Remover archivo
+removeFile.addEventListener('click', () => {
+  audioFileInput.value = '';
+  filePreview.classList.add('hidden');
+  if (document.getElementById('audioElement')) {
+    document.getElementById('audioElement').src = '';
+  }
+  if (document.getElementById('audioPreview')) {
+    document.getElementById('audioPreview').classList.add('hidden');
+  }
+});
