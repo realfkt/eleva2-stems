@@ -1,6 +1,5 @@
 // api/procesar.js
 // Este archivo se ejecuta en Vercel, NO en el navegador
-// Usa la clave secreta: ELEVA2_STEMS_SECRET_938472 (definida en Vercel como N8N_SECRET_KEY)
 
 export default async function handler(req) {
   if (req.method !== 'POST') {
@@ -24,9 +23,9 @@ export default async function handler(req) {
     });
   }
 
-  // Verificar variables de entorno (incluyendo tu clave: ELEVA2_STEMS_SECRET_938472)
+  // Obtener variables de entorno
   const n8nUrl = process.env.N8N_WEBHOOK_URL;
-  const secretKey = process.env.N8N_SECRET_KEY; // ← Debe ser ELEVA2_STEMS_SECRET_938472
+  const secretKey = process.env.N8N_SECRET_KEY;
 
   if (!n8nUrl || !secretKey) {
     console.error('Faltan variables de entorno: N8N_WEBHOOK_URL o N8N_SECRET_KEY');
@@ -42,7 +41,7 @@ export default async function handler(req) {
       method: 'POST',
       body: formData,
       headers: {
-        'x-n8n-secret': secretKey // ← Aquí se usa tu clave
+        'x-n8n-secret': secretKey
       }
     });
 
