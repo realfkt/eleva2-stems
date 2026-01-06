@@ -17,46 +17,68 @@ export default async function handler(req) {
 
   // Validaciones básicas
   if (!audioFile || !nombre || !email) {
-    return new Response(JSON.stringify({ error: 'Faltan datos' }), {
+    return new Response(JSON.stringify({ error: 'Faltan datos: archivo, nombre o email' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' }
     });
   }
 
-  // Aquí va tu webhook SECRETO de n8n
-  // Guarda N8N_WEBHOOK_URL y N8N_SECRET_KEY en Vercel como variables de entorno
+  // Verificar variables de entorno
   const n8nUrl = process.env.N8N_WEBHOOK_URL;
   const secretKey = process.env.N8N_SECRET_KEY;
 
   if (!n8nUrl || !secretKey) {
-    return new Response(JSON.stringify({ error: 'Error interno' }), {
+    console.error('Faltan variables de entorno: N8N_WEBHOOK_URL o N8N_SECRET_KEY');
+    return new Response(JSON.stringify({ error: 'Error interno del servidor' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
   }
 
-  // Reenviar a n8n con cabecera secreta
-  const n8nRes = await fetch(n8nUrl, {
-    method: 'POST',
-    body: formData,
-    headers: {
-      'x-n8n-secret': secretKey
+  try {
+    // Reenviar a n8n con cabecera secreta
+    const n8nRes = await fetch(n8nUrl, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'x-n8n-secret': secretKey
+      }
+    });
+
+    // Si n8n responde con error
+    if (!n8nRes.ok) {
+      const errorText = await n8nRes.text();
+      console.error('Error de n8n:', errorText);
+      return new Response(JSON.stringify({ error: 'Servicio temporalmente no disponible' }), {
+        status: 502,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
-  });
 
-  if (!n8nRes.ok) {
-    return new Response(JSON.stringify({ error: 'Error al conectar con el servicio' }), {
+    const n8nData = await n8nRes.json();
+
+    // Verificar que n8n devolvió la URL de pago
+    if (!n8nData.mercadoPagoUrl) {
+      console.error('n8n no devolvió mercadoPagoUrl:', n8nData);
+      return new Response(JSON.stringify({ error: 'No se pudo generar el pago' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Responder al frontend con la URL de pago
+    return new Response(JSON.stringify({
+      urlPago: n8nData.mercadoPagoUrl
+    }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+  } catch (err) {
+    console.error('Excepción en procesar.js:', err);
+    return new Response(JSON.stringify({ error: 'Error inesperado' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
   }
-
-  const n8nData = await n8nRes.json();
-
-  // n8n debe responder con { mercadoPagoUrl: "..." }
-  return new Response(JSON.stringify({
-    urlPago: n8nData.mercadoPagoUrl
-  }), {
-    headers: { 'Content-Type': 'application/json' }
-  });
 }
