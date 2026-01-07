@@ -51,65 +51,7 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Audio preview */
-.audio-preview {
-  margin-bottom: 1.5rem;
-}
-
-.preview-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.preview-header span {
-  font-size: 0.875rem;
-  color: #777;
-}
-
-.play-btn {
-  background: var(--gray-800);
-  color: white;
-  border: none;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  cursor: pointer;
-}
-
-.play-btn:hover {
-  background: #333;
-}
-
-.waveform {
-  display: flex;
-  align-items: flex-end;
-  height: 60px;
-  gap: 2px;
-  padding: 10px 0;
-}
-
-.bar {
-  width: 4px;
-  background: var(--primary);
-  border-radius: 2px;
-  animation: pulse 1.5s infinite alternate;
-  height: 4px;
-  opacity: 0.4;
-}
-
-.bar:nth-child(2n) { animation-delay: 0.1s; }
-.bar:nth-child(3n) { animation-delay: 0.2s; }
-.bar:nth-child(4n) { animation-delay: 0.3s; }
-.bar:nth-child(5n) { animation-delay: 0.4s; }
-
-@keyframes pulse {
-  0% { height: 4px; opacity: 0.4; }
-  100% { height: 24px; opacity: 1; }
-}
-
-/* Form */
+/* Formulario */
 .form-group {
   margin-bottom: 1.25rem;
 }
@@ -136,6 +78,65 @@ body {
   border-color: var(--primary);
 }
 
+/* Drag & Drop Zone */
+.drop-zone {
+  position: relative;
+  border: 2px dashed #444;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #1a1a1a;
+  color: #ccc;
+}
+
+.drop-zone:hover, .drop-zone.dragover {
+  border-color: var(--primary);
+  background: rgba(255, 0, 0, 0.05);
+  color: white;
+}
+
+.drop-zone__icon {
+  margin: 0 auto 1rem;
+  color: #666;
+}
+
+.drop-zone:hover .drop-zone__icon {
+  color: var(--primary);
+}
+
+.drop-zone__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* File Preview */
+.file-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--gray-800);
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.remove-btn {
+  background: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+/* Botón Principal */
 .btn {
   width: 100%;
   padding: 1rem;
@@ -149,161 +150,23 @@ body {
   transition: all 0.3s ease;
 }
 
-.btn:hover {
+.btn:hover:not(:disabled) {
   background: #cc0000;
   box-shadow: 0 0 16px rgba(255, 0, 0, 0.6);
   transform: translateY(-2px);
 }
 
 .btn:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
-  transform: none;
 }
 
-.hidden {
-  display: none !important;
-}
+/* Utilidades */
+.hidden { display: none !important; }
+.mt-3 { margin-top: 0.75rem; }
 
 footer {
   text-align: center;
   color: #555;
   font-size: 0.875rem;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  .container {
-    padding: 0 1rem;
-  }
-  .header h1 {
-    font-size: 1.875rem;
-  }
-  .card {
-    padding: 1.5rem;
-  }
-}
-/* Estilos para la demo */
-.stem-btn {
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.stem-btn.active {
-  background: var(--primary);
-  color: white;
-  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
-}
-
-.stem-btn svg {
-  fill: currentColor;
-  width: 24px;
-  height: 24px;
-  margin: 0 auto;
-}
-/* Estilos para el drag & drop */
-.drop-zone {
-  position: relative;
-  border: 2px dashed #444;
-  border-radius: 12px;
-  padding: 2rem;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: #1a1a1a;
-  color: #ccc;
-}
-
-.drop-zone:hover {
-  border-color: var(--primary);
-  background: rgba(255, 0, 0, 0.05);
-  color: white;
-}
-
-.drop-zone.dragover {
-  border-color: var(--primary);
-  background: rgba(255, 0, 0, 0.1);
-  box-shadow: 0 0 16px rgba(255, 0, 0, 0.3);
-}
-
-.drop-zone__icon {
-  margin: 0 auto 1rem;
-  color: #666;
-  transition: color 0.3s ease;
-}
-
-.drop-zone:hover .drop-zone__icon {
-  color: var(--primary);
-}
-
-.drop-zone__text {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: inherit;
-}
-
-.drop-zone__text--small {
-  font-size: 0.9rem;
-  color: #999;
-}
-
-.drop-zone__input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* Animación de carga */
-.drop-zone.loading {
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% { opacity: 0.7; }
-  50% { opacity: 1; }
-  100% { opacity: 0.7; }
-}
-/* Estado de carga para el botón */
-.btn-loading {
-    position: relative;
-    color: transparent !important;
-    pointer-events: none;
-}
-
-.btn-loading::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 50%;
-    left: 50%;
-    margin: -10px 0 0 -10px;
-    border: 3px solid rgba(255,255,255,0.3);
-    border-radius: 50%;
-    border-top-color: white;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* Estilo para mensajes de error o éxito */
-.status-message {
-    margin-top: 1rem;
-    padding: 0.75rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    text-align: center;
-}
-
-.status-error {
-    background: rgba(255, 0, 0, 0.1);
-    border: 1px solid var(--primary);
-    color: #ff8080;
 }
