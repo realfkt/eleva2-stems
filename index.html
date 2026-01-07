@@ -15,12 +15,10 @@
       <p>Sube tu canción y obtén voces, batería, bajo y más en minutos.</p>
     </div>
 
-    <!-- Demo Interactiva -->
     <div class="demo-section">
       <h2>Prueba la IA en acción</h2>
       <p>Escucha cómo se separan las pistas en tiempo real.</p>
 
-      <!-- Reproductor Global -->
       <div class="demo-player">
         <div class="demo-controls">
           <button id="demoPlayBtn" class="btn">▶ Reproducir Demo</button>
@@ -30,7 +28,6 @@
         <audio id="demoAudio" class="hidden"></audio>
       </div>
 
-      <!-- Botones de Stems -->
       <div class="stem-grid">
         <button data-stem="original" class="stem-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5z"/></svg>
@@ -56,7 +53,6 @@
     </div>
 
     <div class="card">
-      <!-- Preview de audio del usuario -->
       <div id="audioPreview" class="audio-preview hidden">
         <div class="preview-header">
           <span>Tu canción</span>
@@ -66,11 +62,9 @@
         <audio id="audioElement" class="hidden"></audio>
       </div>
 
-      <!-- Formulario -->
       <form id="stemForm" class="form">
         <div class="form-group">
           <label>Archivo de audio (MP3, WAV)</label>
-          <!-- Drag & Drop Zone -->
           <div id="dropZone" class="drop-zone">
             <div class="drop-zone__icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 24 24">
@@ -79,7 +73,7 @@
             </div>
             <p class="drop-zone__text">Arrastra tu archivo de audio aquí</p>
             <p class="drop-zone__text--small">o haz clic para explorar</p>
-            <input type="file" id="audioFile" accept="audio/*" required class="drop-zone__input">
+            <input type="file" id="audioFile" name="audioFile" accept="audio/*" required class="drop-zone__input">
           </div>
           <div id="filePreview" class="hidden mt-3 file-preview">
             <div class="flex items-center justify-between">
@@ -91,11 +85,11 @@
 
         <div class="form-group">
           <label>Tu nombre</label>
-          <input type="text" name="nombre" required>
+          <input type="text" name="nombre" placeholder="Ej. Juan Pérez" required>
         </div>
         <div class="form-group">
           <label>Correo electrónico</label>
-          <input type="email" name="email" required>
+          <input type="email" name="email" placeholder="tu@email.com" required>
         </div>
         <button type="submit" id="submitBtn" class="btn">Procesar con IA</button>
       </form>
